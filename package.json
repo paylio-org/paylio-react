@@ -48,7 +48,7 @@
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
-    "@paylio/embed-js": "github:paylio-org/paylio-embed-js"
+    "@paylio/embed-js": "^0.1.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",
