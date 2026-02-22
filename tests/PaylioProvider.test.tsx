@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { PaylioProvider, usePaylioContext } from "../src/index";
@@ -13,7 +13,7 @@ describe("PaylioProvider", () => {
     render(
       <PaylioProvider publishableKey="pk_test_123">
         <TestConsumer />
-      </PaylioProvider>
+      </PaylioProvider>,
     );
     expect(screen.getByTestId("pk").textContent).toBe("pk_test_123");
   });
@@ -29,7 +29,7 @@ describe("PaylioProvider", () => {
     render(
       <PaylioProvider publishableKey="pk_test">
         <div data-testid="child">Hello</div>
-      </PaylioProvider>
+      </PaylioProvider>,
     );
     expect(screen.getByTestId("child").textContent).toBe("Hello");
   });

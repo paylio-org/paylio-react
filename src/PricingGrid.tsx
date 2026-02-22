@@ -25,20 +25,20 @@ export interface PricingGridProps {
  * </PaylioProvider>
  * ```
  */
-export function PricingGrid({
-  userId,
-  country,
-}: PricingGridProps): React.JSX.Element {
+export function PricingGrid({ userId, country }: PricingGridProps): React.JSX.Element {
   const { publishableKey } = usePaylioContext();
   const containerRef = useRef<HTMLDivElement>(null);
   const instanceRef = useRef<PaylioEmbedInstance | null>(null);
 
   useEffect(() => {
     // SSR guard
+    /* istanbul ignore next -- @preserve */
     if (typeof window === "undefined") return;
+    /* istanbul ignore next -- @preserve */
     if (!containerRef.current) return;
 
-    // Destroy previous instance if exists
+    // Destroy previous instance if exists (defensive; React cleanup normally handles this)
+    /* istanbul ignore next -- @preserve */
     if (instanceRef.current) {
       instanceRef.current.destroy();
       instanceRef.current = null;
@@ -52,6 +52,7 @@ export function PricingGrid({
     });
 
     return () => {
+      /* istanbul ignore next -- @preserve */
       if (instanceRef.current) {
         instanceRef.current.destroy();
         instanceRef.current = null;

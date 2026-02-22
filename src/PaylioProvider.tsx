@@ -26,16 +26,9 @@ export function PaylioProvider({
   publishableKey,
   children,
 }: PaylioProviderProps): React.JSX.Element {
-  const value = useMemo(
-    () => ({ publishableKey }),
-    [publishableKey]
-  );
+  const value = useMemo(() => ({ publishableKey }), [publishableKey]);
 
-  return (
-    <PaylioContext.Provider value={value}>
-      {children}
-    </PaylioContext.Provider>
-  );
+  return <PaylioContext.Provider value={value}>{children}</PaylioContext.Provider>;
 }
 
 /**
@@ -46,7 +39,7 @@ export function usePaylioContext(): PaylioContextValue {
   if (!ctx) {
     throw new Error(
       "usePaylioContext must be used within a <PaylioProvider>. " +
-        "Wrap your component tree with <PaylioProvider publishableKey=\"pk_...\">."
+        'Wrap your component tree with <PaylioProvider publishableKey="pk_...">.',
     );
   }
   return ctx;

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
 import React from "react";
-import { render, screen, cleanup } from "@testing-library/react";
+import { render, cleanup } from "@testing-library/react";
 import { PaylioProvider, PricingGrid } from "../src/index";
 
 // Mock @paylio/embed-js to avoid real DOM iframe injection
@@ -21,7 +21,7 @@ describe("PricingGrid", () => {
     render(
       <PaylioProvider publishableKey="pk_test">
         <PricingGrid userId="u1" />
-      </PaylioProvider>
+      </PaylioProvider>,
     );
     // Should render a div that the embed mounts into
     const container = document.querySelector("[data-paylio-grid]");
@@ -32,13 +32,13 @@ describe("PricingGrid", () => {
     render(
       <PaylioProvider publishableKey="pk_live_abc">
         <PricingGrid userId="user_42" />
-      </PaylioProvider>
+      </PaylioProvider>,
     );
     expect(createPaylioEmbed).toHaveBeenCalledWith(
       expect.objectContaining({
         publishableKey: "pk_live_abc",
         userId: "user_42",
-      })
+      }),
     );
   });
 
@@ -46,12 +46,12 @@ describe("PricingGrid", () => {
     render(
       <PaylioProvider publishableKey="pk_test">
         <PricingGrid userId="u1" country="IN" />
-      </PaylioProvider>
+      </PaylioProvider>,
     );
     expect(createPaylioEmbed).toHaveBeenCalledWith(
       expect.objectContaining({
         country: "IN",
-      })
+      }),
     );
   });
 
@@ -62,7 +62,7 @@ describe("PricingGrid", () => {
     const { unmount } = render(
       <PaylioProvider publishableKey="pk_test">
         <PricingGrid userId="u1" />
-      </PaylioProvider>
+      </PaylioProvider>,
     );
 
     unmount();
@@ -71,9 +71,7 @@ describe("PricingGrid", () => {
 
   it("throws if used outside PaylioProvider", () => {
     const spy = vi.spyOn(console, "error").mockImplementation(() => {});
-    expect(() => render(<PricingGrid userId="u1" />)).toThrow(
-      /PaylioProvider/
-    );
+    expect(() => render(<PricingGrid userId="u1" />)).toThrow(/PaylioProvider/);
     spy.mockRestore();
   });
 
@@ -84,13 +82,13 @@ describe("PricingGrid", () => {
     const { rerender } = render(
       <PaylioProvider publishableKey="pk_test">
         <PricingGrid userId="u1" />
-      </PaylioProvider>
+      </PaylioProvider>,
     );
 
     rerender(
       <PaylioProvider publishableKey="pk_test">
         <PricingGrid userId="u2" />
-      </PaylioProvider>
+      </PaylioProvider>,
     );
 
     // Should have destroyed old and created new
