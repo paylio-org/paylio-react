@@ -1,7 +1,7 @@
 {
   "name": "@paylio/react",
   "version": "0.1.0",
-  "description": "Paylio React SDK — embed pricing grids with PaylioProvider + PricingGrid components",
+  "description": "Paylio React SDK \u2014 embed pricing grids with PaylioProvider + PricingGrid components",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -72,5 +72,8 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.0",
     "vitest": "^4.0.18"
+  },
+  "overrides": {
+    "minimatch": ">=10.2.1"
   }
 }
