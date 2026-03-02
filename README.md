@@ -87,8 +87,18 @@ Renders a Paylio pricing grid. Must be used within a `<PaylioProvider>`.
 
 | Prop | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `userId` | `string` | Yes | — | Your external user ID |
+| `userId` | `string` | No | Anonymous | Your external user ID |
 | `country` | `string` | No | Auto-detected | ISO 3166-1 alpha-2 country code |
+
+Anonymous mode is supported:
+
+```tsx
+<PaylioProvider publishableKey="pk_live_xxx">
+  <PricingGrid />
+</PaylioProvider>
+```
+
+When an anonymous user clicks checkout, the embed flow redirects to your project's login redirect URL.
 
 ## Development
 

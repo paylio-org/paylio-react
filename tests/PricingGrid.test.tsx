@@ -42,6 +42,30 @@ describe("PricingGrid", () => {
     );
   });
 
+  it("allows rendering without userId and omits userId from embed options", () => {
+    render(
+      <PaylioProvider publishableKey="pk_live_abc">
+        <PricingGrid {...({} as any)} />
+      </PaylioProvider>,
+    );
+
+    const firstCall = vi.mocked(createPaylioEmbed).mock.calls[0]?.[0];
+    expect(firstCall).toBeTruthy();
+    expect(firstCall).not.toHaveProperty("userId");
+  });
+
+  it("treats whitespace-only userId as anonymous and omits userId from embed options", () => {
+    render(
+      <PaylioProvider publishableKey="pk_live_abc">
+        <PricingGrid userId="   " />
+      </PaylioProvider>,
+    );
+
+    const firstCall = vi.mocked(createPaylioEmbed).mock.calls[0]?.[0];
+    expect(firstCall).toBeTruthy();
+    expect(firstCall).not.toHaveProperty("userId");
+  });
+
   it("passes country to createPaylioEmbed when provided", () => {
     render(
       <PaylioProvider publishableKey="pk_test">

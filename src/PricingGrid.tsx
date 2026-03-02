@@ -4,8 +4,8 @@ import type { PaylioEmbedInstance } from "@paylio/embed-js";
 import { usePaylioContext } from "./PaylioProvider";
 
 export interface PricingGridProps {
-  /** External user ID from your system */
-  userId: string;
+  /** External user ID from your system (optional for anonymous mode) */
+  userId?: string;
 
   /**
    * ISO 3166-1 alpha-2 country code for region-specific pricing.
@@ -44,12 +44,18 @@ export function PricingGrid({ userId, country }: PricingGridProps): React.JSX.El
       instanceRef.current = null;
     }
 
-    instanceRef.current = createPaylioEmbed({
+    const normalizedUserId = userId?.trim();
+    const embedOptions: Record<string, unknown> = {
       publishableKey,
-      userId,
       country,
       container: containerRef.current,
-    });
+    };
+
+    if (normalizedUserId) {
+      embedOptions.userId = normalizedUserId;
+    }
+
+    instanceRef.current = createPaylioEmbed(embedOptions as any);
 
     return () => {
       /* istanbul ignore next -- @preserve */
