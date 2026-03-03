@@ -1,6 +1,6 @@
 {
   "name": "@paylio/react",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Paylio React SDK — embed pricing grids with PaylioProvider + PricingGrid components",
   "type": "module",
   "main": "./dist/index.cjs",
