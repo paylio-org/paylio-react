@@ -89,6 +89,7 @@ Renders a Paylio pricing grid. Must be used within a `<PaylioProvider>`.
 |------|------|----------|---------|-------------|
 | `userId` | `string` | No | Anonymous | Your external user ID |
 | `country` | `string` | No | Auto-detected | ISO 3166-1 alpha-2 country code |
+| `scriptUrl` | `string` | No | `https://api.paylio.pro/embed/v1/js` | Override hosted runtime script URL |
 
 Anonymous mode is supported:
 

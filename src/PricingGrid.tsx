@@ -62,7 +62,9 @@ export function PricingGrid({ userId, country, scriptUrl }: PricingGridProps): R
       embedOptions.userId = normalizedUserId;
     }
 
-    instanceRef.current = createPaylioEmbed(embedOptions as any);
+    instanceRef.current = createPaylioEmbed(
+      embedOptions as unknown as Parameters<typeof createPaylioEmbed>[0],
+    );
 
     return () => {
       /* istanbul ignore next -- @preserve */

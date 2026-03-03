@@ -45,7 +45,7 @@ describe("PricingGrid", () => {
   it("allows rendering without userId and omits userId from embed options", () => {
     render(
       <PaylioProvider publishableKey="pk_live_abc">
-        <PricingGrid {...({} as any)} />
+        <PricingGrid />
       </PaylioProvider>,
     );
 
