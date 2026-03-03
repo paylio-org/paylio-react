@@ -1,6 +1,6 @@
 {
   "name": "@paylio/react",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "Paylio React SDK — embed pricing grids with PaylioProvider + PricingGrid components",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -53,7 +53,7 @@
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
-    "@paylio/embed-js": "^0.1.0"
+    "@paylio/embed-js": "^0.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

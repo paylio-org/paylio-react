@@ -12,6 +12,12 @@ export interface PricingGridProps {
    * Auto-detected from IP if not provided.
    */
   country?: string;
+
+  /**
+   * Override hosted embed runtime URL.
+   * Useful for development or staging environments.
+   */
+  scriptUrl?: string;
 }
 
 /**
@@ -25,7 +31,7 @@ export interface PricingGridProps {
  * </PaylioProvider>
  * ```
  */
-export function PricingGrid({ userId, country }: PricingGridProps): React.JSX.Element {
+export function PricingGrid({ userId, country, scriptUrl }: PricingGridProps): React.JSX.Element {
   const { publishableKey } = usePaylioContext();
   const containerRef = useRef<HTMLDivElement>(null);
   const instanceRef = useRef<PaylioEmbedInstance | null>(null);
@@ -48,6 +54,7 @@ export function PricingGrid({ userId, country }: PricingGridProps): React.JSX.El
     const embedOptions: Record<string, unknown> = {
       publishableKey,
       country,
+      scriptUrl,
       container: containerRef.current,
     };
 
@@ -64,7 +71,7 @@ export function PricingGrid({ userId, country }: PricingGridProps): React.JSX.El
         instanceRef.current = null;
       }
     };
-  }, [publishableKey, userId, country]);
+  }, [publishableKey, userId, country, scriptUrl]);
 
   return <div ref={containerRef} data-paylio-grid="" />;
 }

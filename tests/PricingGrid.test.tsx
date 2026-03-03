@@ -79,6 +79,19 @@ describe("PricingGrid", () => {
     );
   });
 
+  it("passes scriptUrl to createPaylioEmbed when provided", () => {
+    render(
+      <PaylioProvider publishableKey="pk_test">
+        <PricingGrid userId="u1" scriptUrl="https://api-origin.paylio.pro/embed/v1/js" />
+      </PaylioProvider>,
+    );
+    expect(createPaylioEmbed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        scriptUrl: "https://api-origin.paylio.pro/embed/v1/js",
+      }),
+    );
+  });
+
   it("calls destroy on unmount", () => {
     const mockDestroy = vi.fn();
     vi.mocked(createPaylioEmbed).mockReturnValue({ destroy: mockDestroy });
